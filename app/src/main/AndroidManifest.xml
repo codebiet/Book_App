@@ -1,19 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.shivank.bookdeliveringapp">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.adreno.bookstore">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/book_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:resizeableActivity="false"
+        android:roundIcon="@mipmap/book_launcher"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:targetApi="n">
+        <activity android:name=".util.Book4Activity" />
+        <activity android:name=".util.Book3Activity" />
+        <activity android:name=".util.Book2Activity" />
+        <activity android:name=".util.Book1Activity" />
+        <activity android:name=".activity.OrderPlacedActivity" />
+        <activity android:name=".activity.BookDetailsActivity" />
         <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
-        <activity android:name=".SplashScreen" />
-        <activity android:name=".MainActivity">
+            android:name=".activity.AdressActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DashboardActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SplashActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

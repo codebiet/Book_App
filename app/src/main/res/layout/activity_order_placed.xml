@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgActionOrderPlaced"
+            android:layout_width="149dp"
+            android:layout_height="108dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/done_img" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgActionOrderPlaced"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/order_placed"
+            android:fontFamily="@font/poppins"
+            android:textColor="@android:color/white"
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal" />
+
+        <Button
+            android:id="@+id/btnOk"
+            android:layout_width="143dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/cart_button_background"
+            android:fontFamily="@font/poppins"
+            android:text="@string/back_to_home"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
+</FrameLayout>

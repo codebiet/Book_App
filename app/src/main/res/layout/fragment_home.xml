@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.HomeFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frame"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        app:layout_anchor="@+id/frame"
+        app:layout_anchorGravity="center"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBook1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01"
+        app:layout_constraintWidth_percent="0.5">
+
+        <ImageView
+            android:id="@+id/imgBook1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:src="@drawable/img_let_us_c"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.70"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtBookName1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Let Us C"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgBook1"
+            app:layout_constraintVertical_bias="0.01"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/txtBookPrice1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/rupee_indian"
+            android:text="299"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBookName1"
+            app:layout_constraintVertical_bias="0.1"
+            android:drawableLeft="@drawable/rupee_indian" />
+
+        <Button
+            android:id="@+id/btnViewDetails1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryLight"
+            android:text="View Details"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintHeight_percent="0.12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBookPrice1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBook2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintStart_toEndOf="@id/clBook1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01"
+        app:layout_constraintWidth_percent="0.47">
+
+        <ImageView
+            android:id="@+id/imgBook2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:src="@drawable/img_c"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.70"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtBookName2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="C Programming"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgBook2"
+            app:layout_constraintVertical_bias="0.01"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/txtBookPrice2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/rupee_indian"
+            android:text="249"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBookName2"
+            app:layout_constraintVertical_bias="0.1"
+            android:drawableLeft="@drawable/rupee_indian" />
+
+        <Button
+            android:id="@+id/btnViewDetails2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryLight"
+            android:text="View Details"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBookPrice2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBook3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clBook1"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintWidth_percent="0.5">
+
+        <ImageView
+            android:id="@+id/imgBook3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:src="@drawable/img_python"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.70"
+            app:layout_constraintHorizontal_bias="0.529"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtBookName3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Learning with Python"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgBook3"
+            app:layout_constraintVertical_bias="0.01"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/txtBookPrice3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/rupee_indian"
+            android:text="499"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBookName3"
+            app:layout_constraintVertical_bias="0.1"
+            android:drawableLeft="@drawable/rupee_indian" />
+
+        <Button
+            android:id="@+id/btnViewDetails3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryLight"
+            android:text="View Details"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBookPrice3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBook4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintStart_toEndOf="@id/clBook3"
+        app:layout_constraintTop_toBottomOf="@id/clBook2"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintWidth_percent="0.47">
+
+        <ImageView
+            android:id="@+id/imgBook"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:src="@drawable/img_algo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.70"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtBookName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Algorithms"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgBook"
+            app:layout_constraintVertical_bias="0.01"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/txtBookPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/rupee_indian"
+            android:text="349"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBookName"
+            app:layout_constraintVertical_bias="0.1"
+            android:drawableLeft="@drawable/rupee_indian" />
+
+        <Button
+            android:id="@+id/btnViewDetails"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryLight"
+            android:text="View Details"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBookPrice" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:text="@string/more_books_to_be_added_soon"
+            android:textSize="19sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.625"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
