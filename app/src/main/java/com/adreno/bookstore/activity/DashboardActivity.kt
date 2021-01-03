@@ -2,7 +2,6 @@ package com.adreno.bookstore.activity
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -14,17 +13,21 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.adreno.bookstore.R
 import com.adreno.bookstore.fragment.HomeFragment
 import com.adreno.bookstore.fragment.ProfileFragment
 import com.adreno.bookstore.util.DrawerLocker
-import com.adreno.bookstore.util.SessionManager
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class DashboardActivity : AppCompatActivity(), DrawerLocker {
+    lateinit var auth: FirebaseAuth
+    var databaseReference :  DatabaseReference? = null
+    var database: FirebaseDatabase? = null
 
     override fun setDrawerEnabled(enabled: Boolean) {
         val lockMode = if (enabled)
@@ -41,8 +44,6 @@ class DashboardActivity : AppCompatActivity(), DrawerLocker {
     private lateinit var navigationView: NavigationView
     private var previousMenuItem: MenuItem? = null
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
-    private lateinit var sessionManager: SessionManager
-    private lateinit var sharedPrefs: SharedPreferences
 
 
 
@@ -50,12 +51,7 @@ class DashboardActivity : AppCompatActivity(), DrawerLocker {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        sessionManager = SessionManager(this@DashboardActivity)
-        sharedPrefs = this@DashboardActivity.getSharedPreferences(
-            sessionManager.PREF_NAME,
-            sessionManager.PRIVATE_MODE
-        )
-
+        auth = FirebaseAuth.getInstance()
         /*Created by us to handle the initialisation of variables*/
         init()
 
@@ -119,10 +115,9 @@ class DashboardActivity : AppCompatActivity(), DrawerLocker {
                     builder.setTitle("Confirmation")
                         .setMessage("Are you sure you want exit?")
                         .setPositiveButton("Yes") { _, _ ->
-                            sessionManager.setLogin(false)
-                            sharedPrefs.edit().clear().apply()
-                            startActivity(Intent(this@DashboardActivity, LoginActivity::class.java))
-                            ActivityCompat.finishAffinity(this)
+                            auth.signOut()
+                            startActivity(Intent(this, LoginActivity::class.java))
+                            finish()
                         }
                         .setNegativeButton("No") { _, _ ->
                             displayHome()
@@ -141,9 +136,8 @@ class DashboardActivity : AppCompatActivity(), DrawerLocker {
         val userName: TextView = convertView.findViewById(R.id.txtDrawerText)
         val userPhone: TextView = convertView.findViewById(R.id.txtDrawerSecondaryText)
         val appIcon: ImageView = convertView.findViewById(R.id.imgDrawerImage)
-        userName.text = sharedPrefs.getString("user_name", null)
-        val phoneText = "+91-${sharedPrefs.getString("user_mobile_number", null)}"
-        userPhone.text = phoneText
+        //userName.text = //sharedPrefs.getString("user_name", null)
+        //userPhone.text = phoneText
         navigationView.addHeaderView(convertView)
 
 

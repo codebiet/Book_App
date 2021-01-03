@@ -61,7 +61,25 @@ class RegisterActivity : AppCompatActivity() {
                         etPassword.error = "Please enter password "
                         return@setOnClickListener
                     }
-                    else -> auth.createUserWithEmailAndPassword(
+                    TextUtils.isEmpty(etConfirmPassword.text.toString()) -> {
+                        etConfirmPassword.error = "Please enter confirm password "
+                        return@setOnClickListener
+                    }
+                    etPassword.text.toString()!=etConfirmPassword.text.toString()->{
+                        etConfirmPassword.error = "Password do not match"
+                        return@setOnClickListener
+                    }
+                    etPassword.text.toString().length<6 ->{
+                        etPassword.error = "Password should have min 6 characters "
+                        return@setOnClickListener
+                    }
+                    etConfirmPassword.text.toString().length<6 ->{
+                        etConfirmPassword.error = "Password should have min 6 characters "
+                        return@setOnClickListener
+                    }
+
+                }
+                    auth.createUserWithEmailAndPassword(
                         etEmail.text.toString(),
                         etPassword.text.toString()
                     )
@@ -69,18 +87,30 @@ class RegisterActivity : AppCompatActivity() {
                             if (it.isSuccessful) {
                                 val currentUser = auth.currentUser
                                 val currentUSerDb = databaseReference?.child((currentUser?.uid!!))
-                                currentUSerDb?.child("firstname")
-                                    ?.setValue(etName.text.toString())
-                                currentUSerDb?.child("lastname")
-                                    ?.setValue(etPhoneNumber.text.toString())
+                                currentUser!!.sendEmailVerification()
+                                    .addOnCompleteListener { task ->
+                                        if (task.isSuccessful) {
+                                            Toast.makeText(
+                                                this,
+                                                "Email sent successfully ",
+                                                Toast.LENGTH_LONG
+                                            ).show()
+                                        }
 
-                                Toast.makeText(
-                                    this,
-                                    "Registration Success. ",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                                finish()
+                                        currentUSerDb?.child("name")
+                                            ?.setValue(etName.text.toString())
+                                        currentUSerDb?.child("mobile")
+                                            ?.setValue(etPhoneNumber.text.toString())
+                                        currentUSerDb?.child("email")
+                                            ?.setValue(etEmail.text.toString())
 
+                                        Toast.makeText(
+                                            this,
+                                            "Registration Success. ",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                        finish()
+                                    }
                             } else {
                                 Toast.makeText(
                                     this,
@@ -92,5 +122,5 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
         }
-    }
+
 

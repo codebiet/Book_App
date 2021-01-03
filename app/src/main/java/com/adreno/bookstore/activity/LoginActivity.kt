@@ -1,59 +1,86 @@
 package com.adreno.bookstore.activity
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.adreno.bookstore.R
-import com.adreno.bookstore.util.SessionManager
-import com.adreno.bookstore.util.Validations
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-
-    lateinit var etMobileNumber: EditText
-    lateinit var etPassword: EditText
-    lateinit var btnLogin: Button
-    lateinit var txtRegisterYourself: TextView
-
-
-    lateinit var sessionManager: SessionManager
-    lateinit var sharedPreferences: SharedPreferences
-
+    lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        etMobileNumber = findViewById(R.id.etMobileNumber)
-        etPassword = findViewById(R.id.etPassword)
-        btnLogin = findViewById(R.id.btnLogin)
-        txtRegisterYourself = findViewById(R.id.txtRegisterYourself)
 
+        auth = FirebaseAuth.getInstance()
 
-        sessionManager = SessionManager(this)
-        sharedPreferences =
-            this.getSharedPreferences(sessionManager.PREF_NAME, sessionManager.PRIVATE_MODE)
-
-        txtRegisterYourself.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
+        val currentuser = auth.currentUser
+        if (currentuser != null) {
+            if (currentuser.isEmailVerified) {
+                startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                finish()
+            }
         }
+        login()
+    }
 
-
+    private fun login() {
 
         btnLogin.setOnClickListener {
-            val mobile: String = etMobileNumber.text.toString()
-            val password: String = etPassword.text.toString()
-            if(Validations.validateMobile(mobile) and Validations.validatePasswordLength(password)) {
-                sessionManager.setLogin(true)
-                val intent = Intent(this, DashboardActivity::class.java)
-                startActivity(intent)
+
+            if (TextUtils.isEmpty(etLoginEmail.text.toString())) {
+                etLoginEmail.error = "Please enter email"
+                return@setOnClickListener
+            } else if (TextUtils.isEmpty(etPassword.text.toString())) {
+                etLoginEmail.error = "Please enter password"
+                return@setOnClickListener
             }
-            else
-                Toast.makeText(this,"Please enter valid details", Toast.LENGTH_SHORT).show()
+            auth.signInWithEmailAndPassword(
+                etLoginEmail.text.toString(),
+                etPassword.text.toString()
+            )
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        val user = auth.currentUser
+
+                        if (user != null) {
+                            if (user.isEmailVerified) {
+                                startActivity(
+                                    Intent(
+                                        this@LoginActivity,
+                                        DashboardActivity::class.java
+                                    )
+                                )
+                                finish()
+                            } else {
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "Please verify your email address! ",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+
+                    } else {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Login failed, please try again! ",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+
+
         }
-    }
-}
+            txtRegisterYourself.setOnClickListener {
+                startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+
+            }
+
+    }}

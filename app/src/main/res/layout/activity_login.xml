@@ -16,19 +16,18 @@
         android:src="@drawable/book_logo" />
 
     <EditText
-        android:id="@+id/etMobileNumber"
+        android:id="@+id/etLoginEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="18dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/text_boundary_background"
         android:drawableStart="@drawable/ic_action_phone"
         android:drawablePadding="3dp"
         android:fontFamily="@font/poppins"
-        android:hint="@string/mobile_number"
-        android:inputType="number"
-        android:maxLength="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
         android:maxLines="1"
         android:padding="10dp"
         android:drawableLeft="@drawable/ic_action_phone" />
@@ -46,7 +45,6 @@
         android:fontFamily="@font/poppins"
         android:hint="@string/password"
         android:inputType="numberPassword"
-        android:maxLength="6"
         android:maxLines="1"
         android:padding="10dp"
         android:drawableLeft="@drawable/ic_action_password" />

@@ -2,24 +2,23 @@ package com.adreno.bookstore.fragment
 
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-
 import com.adreno.bookstore.R
 import com.adreno.bookstore.util.DrawerLocker
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment() {
+    lateinit var auth: FirebaseAuth
+    var databaseReference :  DatabaseReference? = null
+    var database: FirebaseDatabase? = null
 
-    private lateinit var txtUserName: TextView
-    private lateinit var txtPhone: TextView
-    private lateinit var txtEmail: TextView
-    private lateinit var sharedPrefs: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,20 +27,34 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         (activity as DrawerLocker).setDrawerEnabled(true)
-        sharedPrefs = (activity as FragmentActivity).getSharedPreferences(getString(R.string.preference_file_name), Context.MODE_PRIVATE)
-        txtUserName = view.findViewById(R.id.txtUserName)
-        txtPhone = view.findViewById(R.id.txtPhone)
-        txtEmail = view.findViewById(R.id.txtEmail)
-        //Using shared preference to get details
-        val username = sharedPrefs.getString("name", "User Name")
-        val email = sharedPrefs.getString("email", "example@example.com")
-        val mobileNumber = sharedPrefs.getString("mobileNumber", "9876543210")
+
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance()
+        databaseReference = database?.reference!!.child("profile")
+
+        loadProfile()
 
 
-        txtUserName.text = username
-        txtPhone.text = mobileNumber
-        txtEmail.text = email
         return view
     }
+    private fun loadProfile() {
 
+        val user = auth.currentUser
+        val userreference = databaseReference?.child(user?.uid!!)
+
+        userreference?.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                txtUserName.text = snapshot.child("name").value.toString()
+                txtPhone.text = snapshot.child("mobile").value.toString()
+                txtEmail.text = snapshot.child("email").value.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+    }
 }
